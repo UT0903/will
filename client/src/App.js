@@ -102,7 +102,6 @@ class App extends Component {
       BankAddress: null,
     }
     this.withdraw = this.withdraw.bind(this)
-
   }
   
 
