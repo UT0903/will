@@ -5,7 +5,7 @@ const Bank = artifacts.require("Bank");
 
 module.exports = async function(deployer) {
   const bank = await Bank.deployed()
-  deployer.deploy(Bank);
+  // deployer.deploy(Bank);
   // deployer.deploy(setpassword);
   // deployer.deploy(settestamentary);
 };
