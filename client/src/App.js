@@ -1,19 +1,30 @@
 import React, { Component } from "react";
 //import { Tabs, Tab } from 'react-bootstrap';
 import Bank from "./contracts/Bank.json";
+import ReactDOM from 'react-dom';
 //import SimpleStorageContract from "./contracts/SimpleStorage.json";
+//import { HashRouter,Route } from "react-router-dom";
+import { Route, Link, Switch } from "react-router-dom"
+import Testamentary from "./Testamentary";
 
 import getWeb3 from "./getWeb3";
 
 import "./App.css";
+import "./testa.css"
+
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
-  async componentWillMount() {
-    await this.loadBlockchainData(this.props.dispatch)
+  componentWillMount() {
+    this.loadBlockchainData()
+    //this.props.dispatch
   }
-
-  async loadBlockchainData(_dispatch) {
+  async handleClick(event){
+    event.preventDefault()
+    this.refreshPage()
+ }
+ //_dispatch
+  async loadBlockchainData() {
     if(typeof window.ethereum!=='undefined'){
       const web3 = await getWeb3();
       const netId = await web3.eth.net.getId()
@@ -69,6 +80,7 @@ class App extends Component {
     if(this.state.bank!=='undefined'){
       try{
         await this.state.bank.methods.deposit().send({value: amount.toString(), from: this.state.account})
+        this.refreshPage()
       } catch (e) {
         console.log('Error, deposit: ', e)
       }
@@ -88,9 +100,17 @@ class App extends Component {
   async withdraw(withdrawAmount) {
       await this.state.bank.methods.withdraw(withdrawAmount).send({from: this.state.account })
       .once('receipt', (_receipt) => {
+        this.refreshPage()
     })
   }
 
+  openBackUp(){
+
+  }
+
+  async refreshPage(){
+    window.location.reload();
+  }
 
   constructor(props) {
     super(props)
@@ -101,11 +121,10 @@ class App extends Component {
       balance: 0,
       BankAddress: null,
     }
+    this.deposit=this.deposit.bind(this)
     this.withdraw = this.withdraw.bind(this)
 
   }
-  
-
   render() {
     if (!this.state.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
@@ -182,6 +201,11 @@ class App extends Component {
                       現在錢包裡有多少錢？
                       <br></br>
                       <p>{this.state.bb}</p>
+                      <br></br>
+                      <a href = "#/testamentary" className = "button" onclick = {this.handleClick}>遺產分配</a>
+                      <button className="button">back-up</button>
+                      <br></br>
+                      <br></br>
                   </div>
                 </div>
             </main>
