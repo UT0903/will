@@ -36,4 +36,5 @@ contract Bank{
     function getBankBalance() public view returns(uint){
         return address(this).balance;
     }
+    
 }
