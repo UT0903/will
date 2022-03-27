@@ -1,0 +1,52 @@
+/* change the background color */
+.navbar {
+    background:rgba(0,0,0,0);
+    /*background-color: #B8B8FF;ffd91d color : white;rgba(0,0,0,0)*/
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0; 
+    color : #00000080;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    border-bottom-color: #00000080;
+    border-bottom-width: 0.2px;
+    border-bottom-style: solid;
+}
+
+.footer {
+    background:rgba(0,0,0,0);
+    border-top-color: #00000080;
+    border-top-width: 0.2px;
+    border-top-style: solid;
+    font-family: 'Poppins', sans-serif;
+    
+    /*background-color:#8C8F8D ;
+    font-family: "Jost";
+     opacity:0.3; */
+}
+
+.footer-copyright {
+    color: #00000080; 
+}
+
+.dropdown{
+     
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.text{
+    margin: 1em 1em;
+    text-align: center;
+    color : #00000080;
+}
+
+.w{
+    color : #00000080;
+
+}
+.icon{
+    vertical-align: -0.125em;
+    size:2x;
+}
